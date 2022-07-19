@@ -1,0 +1,2 @@
+# goword
+Wordle in Golang
