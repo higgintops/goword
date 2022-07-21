@@ -66,6 +66,8 @@ func (b Board) checkGuess(userInput string, turn int) Board {
 	return b
 }
 
+// TODO:
+// need to check Letter of Guess against the word (to check colors)
 func contains(word string, l string) bool {
 	for i := 0; i <= len(word)-1; i++ {
 		if string(word[i]) == l {
