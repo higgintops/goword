@@ -16,7 +16,7 @@ type Board struct {
 }
 
 // TODO: add all letters
-var letterOptions = [3]string{"a", "b", "c"}
+// var letterOptions = [3]string{"a", "b", "c"}
 var colorBlack = "\033[0m"
 var colorRed = "\033[31m"
 var colorGreen = "\033[32m"
@@ -41,8 +41,46 @@ func (b Board) print() {
 
 // takes in a word guess
 // checks to see if any/all letters of the word are a match
-// and returns state
-func (b Board) checkGuess(guess string) {
-	fmt.Println("You guessed", guess)
-	fmt.Println("now want to check this against the word", getNewWord())
+// and returns state of board
+func (b Board) checkGuess(userInput string, turn int) Board {
+	word := getCurrentWord()
+	guess := Guess{}
+
+	for i, l := range userInput {
+		color := colorBlack
+		// check to see if letter in right placement
+		if string(word[i]) == string(l) {
+			color = colorGreen
+		} else if contains(word, string(l)) {
+			color = colorRed
+		}
+
+		letter := Letter{value: string(l), color: color}
+		guess[i] = letter
+	}
+
+	// update board with the guess
+	b.Rows[turn] = guess
+
+	// TODO: return b and guess and check win in main
+	return b
 }
+
+// Helper function
+func contains(word string, l string) bool {
+	for i := 0; i <= len(word)-1; i++ {
+		if string(word[i]) == l {
+			return true
+		}
+	}
+
+	return false
+}
+
+// func (g Guess) toString() string {
+// 	s := ""
+// 	for _, l := range g {
+// 		s += l.value
+// 	}
+// 	return s
+// }

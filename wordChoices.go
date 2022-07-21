@@ -1,10 +1,14 @@
 package main
 
 var wordChoices = [...]string{"power", "clock", "trash"}
+var currentWord string
 
 // TODO: this needs to "randomly" select a word from wordChoices
 func getNewWord() string {
-	return wordChoices[0]
+	currentWord = wordChoices[0]
+	return currentWord
 }
 
-// TODO: also just store which word is being used for the entire duration of a game
+func getCurrentWord() string {
+	return currentWord
+}
