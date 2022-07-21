@@ -7,18 +7,11 @@ import (
 	"strings"
 )
 
-const guessCount int = 6
-
 func main() {
 
 	won := false
 	word := getNewWord()
 	b := newBoard()
-
-	// Each iteration do:
-	// 1.) print board
-	// 2.) print letter options
-	// 3.) ask for input (a word guess)
 
 	for turn := 0; turn <= guessCount; turn++ {
 		// clear terminal
@@ -27,20 +20,18 @@ func main() {
 		// Print the game board
 		b.print()
 
-		// check win/lose
+		// check win/lose state
 		if won {
 			fmt.Println("~~~~~ YOU WIN!! ~~~~~")
 			os.Exit(1)
-		} else if turn == 6 {
+		} else if turn == guessCount {
 			fmt.Println("~~~~~ YOU LOST!! ~~~~~ The word was", word)
 			os.Exit(1)
 		}
 
-		// TODO: print the letter options
-
-		// Ask for user input until it is exactly 5 characters
+		// Ask for user input, ensuring word is 5 characters
 		guess := ""
-		for ok := true; ok; ok = (len(guess) != 5) {
+		for ok := true; ok; ok = (len(guess) != wordLength) {
 			guess = getUserGuess()
 		}
 
