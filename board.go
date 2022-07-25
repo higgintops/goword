@@ -34,7 +34,7 @@ func (b Board) print() {
 	for _, guessRow := range b.Rows {
 		for i := 0; i <= len(guessRow)-1; i++ {
 			// Print each letter value in appropriate color
-			fmt.Print(string(guessRow[i].color), guessRow[i].value, " ")
+			fmt.Print(guessRow[i].color, guessRow[i].value, " ")
 		}
 		fmt.Println()
 	}
@@ -67,7 +67,8 @@ func (b Board) checkGuess(userInput string, turn int) Board {
 }
 
 // TODO:
-// need to check Letter of Guess against the word (to check colors)
+// need to check Letter of Guess against the word
+// (i.e the ability to check colors)
 func contains(word string, l string) bool {
 	for i := 0; i <= len(word)-1; i++ {
 		if string(word[i]) == l {
